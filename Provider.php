@@ -3,6 +3,8 @@
 namespace Aidev\Fconnect;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Arr;
+use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User;
 use SocialiteProviders\Manager\Oauth2\AbstractProvider;
 
@@ -66,7 +68,7 @@ class Provider extends AbstractProvider
             'nickname' => null,
             'name' => $user['given_name'] . ' ' .$user['family_name'],
             'email'    => $user['email'],
-            'avatar' => null
+            'avatar' => null,
         ]);
     }
 
@@ -78,5 +80,22 @@ class Provider extends AbstractProvider
         return array_merge(parent::getTokenFields($code), [
             'grant_type' => 'authorization_code',
         ]);
+    }
+
+    public function user()
+    {
+        if ($this->hasInvalidState()) {
+            throw new InvalidStateException;
+        }
+
+        $response = $this->getAccessTokenResponse($this->getCode());
+
+        $user = $this->mapUserToObject($this->getUserByToken(
+            $token = Arr::get($response, 'access_token')
+        ));
+        $user['id_token'] = Arr::get($response, 'id_token');
+        return $user->setToken($token)
+            ->setRefreshToken(Arr::get($response, 'refresh_token'))
+            ->setExpiresIn(Arr::get($response, 'expires_in'));
     }
 }
