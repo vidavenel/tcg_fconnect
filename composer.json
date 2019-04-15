@@ -18,5 +18,6 @@
     "psr-4": {
       "Aidev\\Fconnect\\": ""
     }
-  }
+  },
+  "minimum-stability": "stable"
 }
