@@ -1,0 +1,21 @@
+{
+  "name": "aidev/fconnect",
+  "description": "france connect for laravel Socialite",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Vincent DAVENEL",
+      "email": "vincent@aigledev.com"
+    }
+  ],
+  "require": {
+    "php": "^5.6 || ^7.0",
+    "socialiteproviders/manager": "~2.0 || ~3.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Aidev\\Fconnect\\": ""
+    }
+  }
+}
