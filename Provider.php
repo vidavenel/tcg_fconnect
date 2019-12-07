@@ -25,7 +25,7 @@ class Provider extends AbstractProvider
     protected function getAuthUrl($state)
     {
         //dd($this->buildAuthUrlFromBase('https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize', $state)."&nonce=".sha1(mt_rand(0,mt_getrandmax())));
-        return $this->buildAuthUrlFromBase('https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize', $state)."&nonce=".sha1(mt_rand(0,mt_getrandmax()));
+        return $this->buildAuthUrlFromBase('https://fcp.integ01.dev-franceconnect.fr/api/v1/authorize', $state)."&acr_values=eidas1&nonce=".sha1(mt_rand(0,mt_getrandmax()));
     }
 
     /**
