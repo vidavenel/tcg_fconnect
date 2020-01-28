@@ -6,9 +6,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User;
-use SocialiteProviders\Manager\Oauth2\AbstractProvider;
 
-class Provider extends AbstractProvider
+class Provider extends SocialiteProviders\Manager\Oauth2\AbstractProvider
 {
     const IDENTIFIER = 'FCONNECT';
 
